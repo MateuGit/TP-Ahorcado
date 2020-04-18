@@ -19,6 +19,7 @@ public class Player implements Runnable {
     private Integer id;
     @Column(name = "namePlayer")
     private String name;
+    @Transient
     private Match ActualMatch;
 
     public Player(String name, Match Match) {
@@ -32,12 +33,12 @@ public class Player implements Runnable {
         while (ActualMatch.getWinner() == -1 && !ActualMatch.Ilost(this)) {
             try {
                 ActualMatch.battlefield((char) ('a' + Math.random() * ('z' - 'a')), this);
-                ActualMatch.showSituation();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Perdi o ya hay ganador");
+        ActualMatch.showSituation();
     }
 
 
