@@ -1,4 +1,4 @@
-package com.example.demo.Model;
+package TP.Model;
 
 import java.sql.*;
 

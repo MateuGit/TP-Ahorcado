@@ -1,6 +1,6 @@
-package com.example.demo.Daos.Interfaces;
+package TP.Daos.Interfaces;
 
-import com.example.demo.Model.Word;
+import TP.Model.Word;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

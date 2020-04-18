@@ -1,12 +1,5 @@
-package com.example.demo.Service;
+package TP.Service;
 
-import com.example.demo.Daos.Interfaces.IWordsDao;
-import com.example.demo.Model.Word;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 /*
 @Service
 public class WordsService {

@@ -1,7 +1,7 @@
-package com.example.demo.Daos.Classes;
+package TP.Daos.Classes;
 
-import com.example.demo.Daos.Interfaces.IPlayersDao;
-import com.example.demo.Model.Player;
+import TP.Daos.Interfaces.IPlayersDao;
+import TP.Model.Player;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

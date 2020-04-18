@@ -1,19 +1,18 @@
-package com.example.demo;
+package TP;
 
-import com.example.demo.Daos.Classes.CPlayersDao;
-import com.example.demo.Daos.Classes.CWordsDao;
-import com.example.demo.Daos.Interfaces.IPlayersDao;
-import com.example.demo.Daos.Interfaces.IWordsDao;
-import com.example.demo.Model.ConnectionMYSQL;
-import com.example.demo.Model.Match;
-import com.example.demo.Model.Player;
-import com.example.demo.Model.Word;
+import TP.Daos.Classes.CPlayersDao;
+import TP.Daos.Interfaces.IPlayersDao;
+import TP.Daos.Classes.CWordsDao;
+import TP.Daos.Interfaces.IWordsDao;
+import TP.Model.ConnectionMYSQL;
+import TP.Model.Match;
+import TP.Model.Player;
+import TP.Model.Word;
 
-import org.springframework.boot.SpringApplication;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,7 +37,8 @@ public class DemoApplication {
            IPlayersDao Pdao=new CPlayersDao(connection);
            Player player2=Pdao.getByName("Facundo");
            Player player1=Pdao.getByName("German");
-
+           System.out.println(words.get(indexWordPlayer1));
+           System.out.println(words.get(indexWordPlayer2));
 
            // Creo la partida
             Match match=new Match(player1,player2,words.get(indexWordPlayer1),words.get(indexWordPlayer2));

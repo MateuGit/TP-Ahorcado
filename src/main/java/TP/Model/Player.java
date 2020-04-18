@@ -1,4 +1,4 @@
-package com.example.demo.Model;
+package TP.Model;
 
 import lombok.*;
 
@@ -29,7 +29,7 @@ public class Player implements Runnable {
     @Override
     public void run() {
 
-        while (ActualMatch.getWinner() == -1 && ActualMatch.anybodyLost() != getId()) {
+        while (ActualMatch.getWinner() == -1 && !ActualMatch.Ilost(this)) {
             try {
                 ActualMatch.battlefield((char) ('a' + Math.random() * ('z' - 'a')), this);
                 ActualMatch.showSituation();

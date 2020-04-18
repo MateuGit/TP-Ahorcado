@@ -1,6 +1,6 @@
-package com.example.demo.Daos.Interfaces;
+package TP.Daos.Interfaces;
 
-import com.example.demo.Model.Player;
+import TP.Model.Player;
 import org.springframework.stereotype.Repository;
 
 @Repository

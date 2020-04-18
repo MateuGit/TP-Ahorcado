@@ -1,4 +1,4 @@
-package com.example.demo.Model;
+package TP.Model;
 
 import lombok.*;
 
@@ -28,7 +28,7 @@ public class Match {
     @ManyToOne
     private Word wordPlayer2;
 
-    private Integer winner=-1;
+    private Integer winner = -1;
     private int[] hitsForPlayer = new int[2];//Pos 0=aciertos jugador 1 -/- pos 1=aciertos jugador 2
     private List<Character> lettersSelectedPlayer1;
     private List<Character> lettersSelectedPlayer2;
@@ -48,21 +48,22 @@ public class Match {
     }
 
     public synchronized void battlefield(Character character, Player player) throws InterruptedException {
-
+        System.out.println("Comienzo");
         if (player.equals(player1)) {
             while (insertLetterPlayer1(character) == 0) {
                 insertLetterPlayer1((char) ('a' + Math.random() * ('z' - 'a')));
             }
-        } else{
+        } else {
             while (insertLetterPlayer2(character) == 0) {
                 insertLetterPlayer1((char) ('a' + Math.random() * ('z' - 'a')));
             }
         }//Si, puede llegar un player cualquiera y entra al else, para hacerlo mas dinamico hagamos de cuenta que esta 100% verificado que entran bien.
-        if (!isAnybodyTheWinner()){
+        if (!isAnybodyTheWinner() && anybodyLost() == 0) {
             notifyAll();
+            System.out.println("Entre al wait ");
             wait();
-        }else
-        {
+        } else {
+            System.out.println("Entre al todos");
             notifyAll();
         }
 
@@ -76,6 +77,7 @@ public class Match {
             if (wordPlayer2.getWord().indexOf(character) != -1) {
                 lettersSelectedPlayer1.add(character);
                 hitsForPlayer[0] += 1;
+                isAnybodyTheWinner();
                 return 1;
             }
         }
@@ -92,6 +94,7 @@ public class Match {
             if (wordPlayer1.getWord().indexOf(character) != -1) {
                 lettersSelectedPlayer2.add(character);
                 hitsForPlayer[1] += 1;
+                isAnybodyTheWinner();
                 return 1;
             }
         }
@@ -114,16 +117,34 @@ public class Match {
 
     public Integer anybodyLost() {
         if (lettersSelectedPlayer1.size() - hitsForPlayer[0] >= 6) {
+            System.out.println("Perdio el 1");
             return player1.getId();
         } else if (lettersSelectedPlayer2.size() - hitsForPlayer[1] >= 6) {
+            System.out.println("Perdio el 2");
             return player2.getId();
         }
         return 0;
     }
-    public void showSituation(){
+
+    public boolean Ilost(Player player) {
+        if (player.equals(player1)) {
+            if (lettersSelectedPlayer1.size() - hitsForPlayer[0] >= 6) {
+                System.out.println("Perdio el 1");
+                return true;
+            }
+        } else {
+            if (lettersSelectedPlayer1.size() - hitsForPlayer[0] >= 6) {
+                System.out.println("Perdio el 2");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void showSituation() {
         System.out.println("---------------------------");
-        System.out.println(player1.getId()+": "+hitsForPlayer[0] + " -  Intentos: "+lettersSelectedPlayer1.size());
-        System.out.println(player2.getId()+": "+hitsForPlayer[1]+ " -  Intentos: "+lettersSelectedPlayer2.size());
+        System.out.println(player1.getId() + ": " + hitsForPlayer[0] + " -  Intentos: " + lettersSelectedPlayer1.size());
+        System.out.println(player2.getId() + ": " + hitsForPlayer[1] + " -  Intentos: " + lettersSelectedPlayer2.size());
         System.out.println("---------------------------");
     }
 

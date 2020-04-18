@@ -1,14 +1,8 @@
-package com.example.demo.Daos.Classes;
+package TP.Daos.Classes;
 
-import com.example.demo.Daos.Interfaces.IWordsDao;
-import com.example.demo.Model.ConnectionMYSQL;
-import com.example.demo.Model.Word;
-import com.mysql.cj.jdbc.CallableStatement;
-import lombok.Data;
-import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.stereotype.Repository;
+import TP.Model.Word;
+import TP.Daos.Interfaces.IWordsDao;
 
-import javax.persistence.Entity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
