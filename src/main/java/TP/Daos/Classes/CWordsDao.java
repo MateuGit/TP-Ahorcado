@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CWordsDao implements IWordsDao {
@@ -24,12 +25,9 @@ public class CWordsDao implements IWordsDao {
     try {
         PreparedStatement ps = this.connection.prepareStatement(getAll);
         ResultSet rs=ps.executeQuery();
-
         while (rs.next()){
-
             Word aux=new Word(rs.getInt("id"),rs.getString("word"));
             allWords.add(aux);
-
         }
     }catch (SQLException ex){
         ex.getMessage();

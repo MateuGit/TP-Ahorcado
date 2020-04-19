@@ -17,19 +17,21 @@ public class CPlayersDao implements IPlayersDao {
     }
 
     @Override
-    public Player getByName(String name) {
+    public Player getByName(String name) throws SQLException {
         Player player=new Player();
+        PreparedStatement ps=null;
         try {
-            PreparedStatement ps=this.connection.prepareStatement(getById);
+            ps=this.connection.prepareStatement(getById);
             ps.setString(1,name);
             ResultSet rs= ps.executeQuery();
             if (rs.next()){
                 player.setId(rs.getInt("id"));
                 player.setName(rs.getString("playerName"));
             }
-
         }catch (SQLException ex){
             ex.getMessage();
+        }finally {
+            ps.close();
         }
         return player;
     }

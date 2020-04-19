@@ -109,6 +109,7 @@ public class Match {
             lettersSelectedPlayer2.add(character);
             return -1;
         }}
+
     public int matchesLetter(Character character,String word){
         Pattern pattern = Pattern.compile(String.valueOf(character)); //case insensitive, use [g] for only lower
         Matcher matcher = pattern.matcher(word);
