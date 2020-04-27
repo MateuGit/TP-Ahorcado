@@ -44,7 +44,7 @@ public class Main {
             int indexWordPlayer1 = 1 + (int) (Math.random() * ((words.size() - 1)));
             int indexWordPlayer2 = 1 + (int) (Math.random() * ((words.size() - 1)));
 
-            //Supuestamente los jugadores ya estan cargados en la base.
+            //Los jugadores ya estan cargados en la base.
             IPlayersDao Pdao = new CPlayersDao(connection);
             Player player2 = Pdao.getByName("Facundo");
             Player player1 = Pdao.getByName("German");

@@ -32,4 +32,22 @@ public class CMatchesDao implements IMatchesDao{
            ps.close();
         }
     }
+
+    @Override
+    public void saveAndTake(Match match) throws SQLException {
+        PreparedStatement ps=null;
+        try{
+            ps=this.connection.prepareStatement(insert);
+            int index=1;
+            ps.setInt(index++,match.getPlayer1().getId());
+            ps.setInt(index++,match.getPlayer2().getId());
+            ps.setInt(index++,match.getWordPlayer1().getId());
+            ps.setInt(index++,match.getWordPlayer2().getId());
+            ps.executeUpdate();
+        }catch (SQLException ex){
+            ex.getMessage();
+        }finally {
+            ps.close();
+        }
+    }
 }

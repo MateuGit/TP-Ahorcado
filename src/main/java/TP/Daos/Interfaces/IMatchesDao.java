@@ -10,4 +10,5 @@ public interface IMatchesDao extends IBasicsDao<Match> {
 
     @Override
     public void save(Match match) throws SQLException;
+    public void saveAndTake(Match match)throws SQLException;
 }
